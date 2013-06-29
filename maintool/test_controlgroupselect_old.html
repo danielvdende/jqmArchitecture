@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <title>jQuery Mobile Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script>
+        var start = new Date().getTime();
+    </script>
+    <link rel="stylesheet" href="jqueryRelease/jqmOLDdefault.css" />
+
+    <script src="jqueryRelease/jquery.js"></script>
+    <script src="jqueryRelease/jqmOLD.js"></script>
+</head>
+<body>
+<section data-role="page">
+    <form>
+        <fieldset data-role="controlgroup">
+            <label for="select-v-2a">Select A</label>
+            <select name="select-v-2a" id="select-v-2a">
+                <option value="#">One</option>
+                <option value="#">Two</option>
+                <option value="#">Three</option>
+            </select>
+            <label for="select-v-2b">Select B</label>
+            <select name="select-v-2b" id="select-v-2b">
+                <option value="#">One</option>
+                <option value="#">Two</option>
+                <option value="#">Three</option>
+            </select>
+            <label for="select-v-2c">Select C</label>
+            <select name="select-v-2c" id="select-v-2c">
+                <option value="#">One</option>
+                <option value="#">Two</option>
+                <option value="#">Three</option>
+            </select>
+        </fieldset>
+    </form>
+   <div id="time"></div>	
+<div id="eventTime"></div>
+</section><!-- /page -->
+</body>
+<script>
+    var end = new Date().getTime();
+    var execTime = end-start; 
+    $("#time").html((end-start));
+    var firstTime = new Date().getTime();
+
+    $("#select-v-2a").on('click', function(){
+        var secondTime = new Date().getTime();
+        $("#eventTime").html(secondTime - firstTime); 
+    });
+    $("#select-v-2a").trigger('click', function(){
+    });
+</script>
+</html>

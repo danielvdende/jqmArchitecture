@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <title>jQuery Mobile Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script>
+        var start = new Date().getTime();
+    </script>
+    <link rel="stylesheet" href="jqueryRelease/jqmNEWdefault.css" />
+
+    <script src="jqueryRelease/jquery.js"></script>
+    <script src="jqueryRelease/jqmNEW.js"></script>
+</head>
+<body>
+<section data-role="page">
+   <div data-role="collapsible">
+    <h3 id="btn">Pets</h3>
+    <ul data-role="listview">
+        <li><a href="#">Canary</a></li>
+        <li><a href="#">Cat</a></li>
+        <li><a href="#">Dog</a></li>
+        <li><a href="#">Gerbil</a></li>
+        <li><a href="#">Iguana</a></li>
+        <li><a href="#">Mouse</a></li>
+    </ul>
+</div><!-- /collapsible -->
+<div data-role="collapsible">
+    <h3>Farm animals</h3>
+    <ul data-role="listview">
+        <li><a href="#">Chicken</a></li>
+        <li><a href="#">Cow</a></li>
+        <li><a href="#">Duck</a></li>
+        <li><a href="#">Horse</a></li>
+        <li><a href="#">Pig</a></li>
+        <li><a href="#">Sheep</a></li>
+    </ul>
+</div><!-- /collapsible -->
+<div data-role="collapsible">
+    <h3>Wild Animals</h3>
+    <ul data-role="listview">
+        <li><a href="#">Aardvark</a></li>
+        <li><a href="#">Alligator</a></li>
+        <li><a href="#">Ant</a></li>
+        <li><a href="#">Bear</a></li>
+        <li><a href="#">Beaver</a></li>
+        <li><a href="#">Cougar</a></li>
+        <li><a href="#">Dingo</a></li>
+    </ul>
+</div><!-- /collapsible -->
+</form>
+   <div id="time"></div>    
+<div id="eventTime"></div>
+</section><!-- /page -->
+</body>
+<script>
+    var end = new Date().getTime();
+    var execTime = end-start; 
+    $("#time").html((end-start));
+    var firstTime = new Date().getTime();
+
+    $("#btn").on('click', function(){
+        console.log("hi");
+        var secondTime = new Date().getTime();
+        $("#eventTime").html(secondTime - firstTime); 
+    });
+    $("#btn").trigger('click', function(){
+    });
+</script>
+</html>

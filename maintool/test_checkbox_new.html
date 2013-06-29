@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <title>jQuery Mobile Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script>
+        var start = new Date().getTime();
+    </script>
+    <link rel="stylesheet" href="jqueryRelease/jqmNEWdefault.css" />
+
+    <script src="jqueryRelease/jquery.js"></script>
+    <script src="jqueryRelease/jqmNEW.js"></script>
+</head>
+<body>
+<section data-role="page">
+    <form>
+        <label id="btn1">
+            <input type="checkbox" id="btn1" >Check me
+        </label>
+    </form>
+   <div id="time"></div>	
+<div id="eventTime"></div>
+</section><!-- /page -->
+</body>
+<script>
+    var end = new Date().getTime();
+    var execTime = end-start; 
+    $("#time").html((end-start));
+    var firstTime = new Date().getTime();
+    
+
+    $(document).on('click', '#btn1', function(){
+        var secondTime = new Date().getTime();
+        $("#eventTime").html(secondTime - firstTime); 
+    })
+    $("#btn1").trigger('click', function(){
+    });
+</script>
+</html>
