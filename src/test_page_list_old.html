@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQM listviews</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script>
+    var start = new Date().getTime();
+  </script>
+  <link rel="stylesheet" href="jqueryRelease/jqmOLDdefault.css"> 
+  <script src="jqueryRelease/jquery.js"></script> 
+  <script src="jqueryRelease/jqmOLD.js"></script> 
+</head>
+<body>
+ 
+  <div data-role="page">
+  
+    <div data-role="header">
+      <h1>JQM listviews</h1>
+    </div><!-- /header -->
+    
+    <div data-role="content">
+
+      <ol data-role="listview" data-theme="b" data-inset="true">
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>Four</li>
+        <li>Five</li>
+        <li>Six</li>
+        <li>Seven</li>
+        <li>Eight</li>
+        <li>Nine</li>
+        <li>Ten</li>
+      </ol>
+
+      <ul data-role="listview" data-theme="b" data-inset="true">
+        <li><a href="#">One</a></li>
+        <li><a href="#">Two</a></li>
+        <li><a href="#">Three</a></li>
+        <li><a href="#">Four</a></li>
+        <li><a href="#">Five</a></li>
+        <li><a href="#">Six</a></li>
+        <li><a href="#">Seven</a></li>
+        <li><a href="#">Eight</a></li>
+        <li><a href="#">Nine</a></li>
+        <li><a href="#">Ten</a></li>
+      </ul>
+
+      <ul data-role="listview" data-theme="b" data-split-icon="gear" data-inset="true">
+        <li data-role="list-divider">Divider</li>
+        <li><a href="#"><h2>One heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Two heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Three heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Four heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Five heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Six heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Seven heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Eight heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Nine heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+        <li><a href="#"><h2>Ten heading</h2><p>paragraph</p></a><a href="#">split button</a></li>
+      </ul>
+ <div id="time"></div> 
+<div id="eventTime"></div>
+    </div><!-- /content -->
+  
+  </div><!-- /page -->
+
+</body>
+<script>
+  var end = new Date().getTime();
+  var execTime = end - start;
+  $("#time").html((end-start));
+
+  // eventTime not relevant (yet!)
+  $("#eventTime").html("0");
+</script>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQM form elements</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script>
+    var start = new Date().getTime();
+  </script>
+  <link rel="stylesheet" href="jqueryRelease/jqmOLDdefault.css"> 
+  <script src="jqueryRelease/jquery.js"></script> 
+  <script src="jqueryRelease/jqmOLD.js"></script> 
+</head>
+<body>
+ 
+  <div data-role="page">
+  
+    <div data-role="header">
+      <h1>JQM form elements</h1>
+    </div><!-- /header -->
+    
+    <div data-role="content">
+
+        <form action="#" method="get">
+
+          <label for="textinput-1">Text Input:</label>
+          <input type="text" name="textinput-1" id="textinput-1" placeholder="Text input" value="">
+
+
+          <label for="search-1">Search Input:</label>
+          <input type="search" name="search-1" id="search-1" value="">
+
+
+          <label for="textarea-1">Textarea:</label>
+          <textarea cols="40" rows="8" name="textarea-1" id="textarea-1">Textarea</textarea>
+
+
+          <label for="select-native-1">Native select:</label>
+          <select name="select-native-1" id="select-native-1">
+              <option value="small">One</option>
+              <option value="medium">Two</option>
+              <option value="large">Three</option>
+          </select>
+
+
+          <label for="select-multiple-1">Custom multiple select:</label>
+          <select multiple="multiple" data-native-menu="false" name="select-multiple-1" id="select-multiple-1">
+              <option value="">Choices:</option>
+              <option value="small">One</option>
+              <option value="medium">Two</option>
+              <option value="large">Three</option>
+          </select>
+
+
+          <fieldset data-role="controlgroup">
+              <legend>Vertical controlgroup, buttons:</legend>
+              <button data-icon="home" data-iconpos="right">One</button>
+              <input type="button" data-icon="back" data-iconpos="right" value="Two">
+              <a href="#" data-role="button" data-icon="grid" data-iconpos="right">Three</a>
+          </fieldset>
+
+
+          <fieldset data-role="controlgroup" data-type="horizontal">
+              <legend>Horizontal controlgroup, buttons:</legend>
+              <button data-icon="home" data-iconpos="right">One</button>
+              <input type="button" data-icon="back" data-iconpos="right" value="Two">
+              <a href="#" data-role="button" data-icon="grid" data-iconpos="right">Three</a>
+          </fieldset>
+
+
+          <label for="slider-1">Slider:</label>
+          <input type="range" name="slider-1" id="slider-1" value="50" min="0" max="100" data-highlight="true">
+
+
+          <fieldset data-role="controlgroup">
+              <legend>Vertical controlgroup, checkbox:</legend>
+              <input type="checkbox" name="checkbox-v-1a" id="checkbox-v-1a">
+              <label for="checkbox-v-1a">One</label>
+              <input type="checkbox" name="checkbox-v-1b" id="checkbox-v-1b">
+              <label for="checkbox-v-1b">Two</label>
+              <input type="checkbox" name="checkbox-v-1c" id="checkbox-v-1c">
+              <label for="checkbox-v-1c">Three</label>
+          </fieldset>
+
+
+          <fieldset data-role="controlgroup">
+              <legend>Vertical controlgroup, radio:</legend>
+              <input type="radio" name="radio-choice-v-1" id="radio-choice-v-1a" value="on" checked="checked">
+              <label for="radio-choice-v-1a">One</label>
+              <input type="radio" name="radio-choice-v-1" id="radio-choice-v-1b" value="off">
+              <label for="radio-choice-v-1b">Two</label>
+              <input type="radio" name="radio-choice-v-1" id="radio-choice-v-1c" value="other">
+              <label for="radio-choice-v-1c">Three</label>
+          </fieldset>
+
+      </form>
+        <div id="time"></div> 
+<div id="eventTime"></div>
+    </div><!-- /content -->
+
+  </div><!-- /page -->
+
+</body>
+<script>
+  var end = new Date().getTime();
+  var execTime = end - start;
+  $("#time").html((end-start));
+
+  // eventTime not relevant (yet!)
+  $("#eventTime").html("0");
+</script>
+</html>

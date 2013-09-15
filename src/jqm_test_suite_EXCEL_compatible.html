@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title> Test Suite </title>									
+	<script type="text/javascript" src="jqueryRelease/jquery.js"></script>						
+	<script>
+	
+	// Array containing all test files in tuples	
+	var docs = new Array();
+	docs["accordion"] = new Array("test_accord_old.html", "test_accord_new.html");
+	docs["autocomplete"] = new Array("test_autocomplete_old.html", "test_autocomplete_new.html");
+	docs["button"] = new Array("test_button_old.html", "test_button_new.html");
+	docs["checkbox"] = new Array("test_checkbox_old.html", "test_checkbox_new.html");
+	docs["collapsible"] = new Array("test_collapsible_old.html", "test_collapsible_new.html");
+	docs["controlgroupbuttons"] = new Array("test_controlgroupbuttons_old.html", "test_controlgroupbuttons_new.html");	
+	docs["controlgroupcheckboxes"] = new Array("test_controlgroupcheckboxes_old.html", "test_controlgroupcheckboxes_new.html");
+	docs["controlgroupselect"] = new Array("test_controlgroupselect_old.html", "test_controlgroupselect_new.html");	
+	docs["flipswitch"] = new Array("test_flipswitch_old.html", "test_flipswitch_new.html");
+	docs["listview"] = new Array("test_listview_old.html", "test_listview_new.html");
+	docs["navbar"] = new Array("test_navbar_old.html", "test_navbar_new.html");
+	docs["radiobuttons"] = new Array("test_radiobuttons_old.html", "test_radiobuttons_new.html");
+	docs["select"] = new Array("test_select_old.html", "test_select_new.html");
+	docs["slider"] = new Array("test_slider_old.html", "test_slider_new.html");	
+	docs["textinput"] = new Array("test_textinput_old.html", "test_textinput_new.html");
+	docs["formPage"] = new Array("test_page_form_old.html", "test_page_form_new.html");
+	docs["listPage"] = new Array("test_page_list_old.html", "test_page_list_new.html");
+	docs["miscPage"] = new Array("test_page_misc_old.html", "test_page_misc_new.html");
+	
+	// select test
+	var docName = "miscPage",
+		documents = docs[docName],
+		initResults = new Array(),
+		eventResults = new Array(),
+		NUMBER_OF_EXECUTIONS = 100,
+		IFRAME_LOAD_TIME = 1500,
+		NEXT_IFRAME_TIME = 2000;
+	
+
+	// This function draws the iframes for the test document selected.
+	function drawIframe(i, docId) {
+		$('<iframe id="myFrame'+i+"_"+docId+'" src="'+ documents[docId] +'">').appendTo("body").ready(function(){
+			// load a new iframe every IFRAME_LOAD_TIME 
+			setTimeout(function(){
+				var str = '#myFrame'+i+"_"+docId;
+				$(str).contents().find('body').val();
+				initTime = $(str).contents().find('#time')[0].textContent;
+				initResults[i+docId*10] = Number(initTime);
+				eventTime = $(str).contents().find('#eventTime')[0].textContent;
+				eventResults[i+docId*10] = Number(eventTime);
+				if( i == (NUMBER_OF_EXECUTIONS-1) ){
+					// only finished HERE!
+
+					// When we're finished, process the results.
+					if(docId == documents.length-1){
+						processResults();
+						alert("Test for " + docName + " complete");
+					}
+				}
+				$(str).remove(); // remove afterwards
+
+				},IFRAME_LOAD_TIME);
+			});		
+	}
+	function removeIframe(i) {
+		$('body').remove("#myFrame" +i);
+	}	
+	
+	$(document).ready(function() {	
+		var j = 0;
+		var counter = 0;
+		var interval = setInterval( function(){
+			drawIframe(counter++, j);
+			if( counter >= NUMBER_OF_EXECUTIONS && j == documents.length-1)
+			{		
+				clearInterval(interval);						
+				j++;
+			}
+			else if (counter >= NUMBER_OF_EXECUTIONS) {
+				counter = 0;
+				j++;
+			}
+		},NEXT_IFRAME_TIME);
+	});
+
+	// This function handles the data produced, converts it to JSON format and posts it to the server for processing
+	function processResults(){
+		var initResultString = '{"';
+		var eventResultString = '{"';
+		for(var docId=0; docId<documents.length; docId++){
+			initResultString += documents[docId] + '":[';
+			eventResultString += documents[docId] + '":[';
+			for(var i = docId*10; i < ((docId*10)+NUMBER_OF_EXECUTIONS); i++)
+			{
+				if(i==((docId*10)+NUMBER_OF_EXECUTIONS)-1)
+				{
+					initResultString += initResults[i];
+					eventResultString += eventResults[i];
+				}
+				else{
+					initResultString += initResults[i] +",";
+					eventResultString += eventResults[i] + ",";
+				}
+			}		
+			initResultString +="]";
+			eventResultString +="]";
+			if(docId != documents.length-1){
+				initResultString+=',"';
+				eventResultString+=',"';
+			}
+		}
+		initResultString+="}";
+		eventResultString+="}";
+
+
+		$.ajax({
+			url: 'excel_handler.php',
+			type: 'POST',
+			data: {init: initResultString, event: eventResultString, doc: docName},
+			success: function (data) {
+				console.log( data );
+			}
+		});
+	}
+		
+	</script>
+</head>
+<body>
+<h1>jQuery Mobile 1.4 Performance Test</h1>
+<div id="response"></div>
+</body>
+</html>
